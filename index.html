@@ -1,1 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arika's World ✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .font-syne { font-family: 'Syne', sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
 
+<!-- HERO SECTION -->
+<header class="py-20 px-4 text-center max-w-4xl mx-auto relative z-10">
+    <span class="text-xs uppercase tracking-widest text-indigo-400 font-bold bg-indigo-950/80 px-4 py-1.5 rounded-full border border-indigo-800">
+      The Ultimate Vault 🎬
+    </span>
+    <h1 class="text-6xl md:text-8xl font-syne font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-pink-300 to-purple-400 mt-6 mb-4">
+        Arika
+    </h1>
+    <p class="text-slate-400 text-lg md:text-xl max-w-xl mx-auto font-normal">
+        A collection of core memories, chaotic clips, and iconic moments.
+    </p>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 pb-24 relative z-10">
+
+    <!-- MEDIA GALLERY GRID -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-grid">
+
+        <!-- ITEM 1: FEATURED VIDEO -->
+        <div class="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[3/4] cursor-pointer shadow-lg hover:border-indigo-500/50 transition-all">
+            <video src="video1.mp4" class="w-full h-full object-cover" muted loop playsinline></video>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
+            <div class="absolute top-3 right-3 bg-indigo-600/90 text-white text-xs px-2.5 py-1 rounded-full font-semibold flex items-center gap-1 shadow-md">
+                ▶ Video
+            </div>
+            <button onclick="openModal('video1.mp4', 'video')" class="absolute inset-0 w-full h-full text-left p-4 flex items-end">
+                <span class="text-sm font-medium text-slate-200 group-hover:translate-x-1 transition-transform">Favorite Moment</span>
+            </button>
+        </div>
+
+        <!-- ITEM 2: PORTRAIT PHOTO -->
+        <div class="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[3/4] cursor-pointer shadow-lg hover:border-indigo-500/50 transition-all">
+            <img src="photo1.jpg" alt="Arika" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <button onclick="openModal('photo1.jpg', 'image')" class="absolute inset-0 w-full h-full text-left p-4 flex items-end bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity">
+                <span class="text-sm font-medium text-slate-200">Iconic Snap</span>
+            </button>
+        </div>
+
+        <!-- ITEM 3: VIDEO CLIP -->
+        <div class="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[3/4] cursor-pointer shadow-lg hover:border-indigo-500/50 transition-all">
+            <video src="video2.mp4" class="w-full h-full object-cover" muted loop playsinline></video>
+            <div class="absolute top-3 right-3 bg-indigo-600/90 text-white text-xs px-2.5 py-1 rounded-full font-semibold flex items-center gap-1 shadow-md">
+                ▶ Video
+            </div>
+            <button onclick="openModal('video2.mp4', 'video')" class="absolute inset-0 w-full h-full text-left p-4 flex items-end bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity">
+                <span class="text-sm font-medium text-slate-200">Unfiltered Energy</span>
+            </button>
+        </div>
+
+        <!-- ITEM 4: PHOTO -->
+        <div class="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[3/4] cursor-pointer shadow-lg hover:border-indigo-500/50 transition-all">
+            <img src="photo2.jpg" alt="Arika" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <button onclick="openModal('photo2.jpg', 'image')" class="absolute inset-0 w-full h-full text-left p-4 flex items-end bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity">
+                <span class="text-sm font-medium text-slate-200">The Vibe</span>
+            </button>
+        </div>
+
+    </div>
+</main>
+
+<!-- LIGHTBOX / FULLSCREEN MEDIA MODAL -->
+<div id="media-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <button onclick="closeModal()" class="absolute top-6 right-6 text-white text-3xl font-bold bg-slate-800/80 hover:bg-slate-700 h-12 w-12 rounded-full flex items-center justify-center border border-slate-600">
+        ✕
+    </button>
+    <div id="modal-content" class="max-w-4xl max-h-[85vh] w-full flex items-center justify-center">
+        <!-- Injected via JavaScript -->
+    </div>
+</div>
+
+<script>
+    // Hover playback for previewing grid videos
+    document.querySelectorAll('video').forEach(vid => {
+        vid.addEventListener('mouseenter', () => vid.play());
+        vid.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+    });
+
+    // Lightbox modal logic
+    const modal = document.getElementById('media-modal');
+    const modalContent = document.getElementById('modal-content');
+
+    function openModal(src, type) {
+        if (type === 'video') {
+            modalContent.innerHTML = `<video src="${src}" controls autoplay class="max-h-[80vh] max-w-full rounded-2xl shadow-2xl"></video>`;
+        } else {
+            modalContent.innerHTML = `<img src="${src}" class="max-h-[80vh] max-w-full object-contain rounded-2xl shadow-2xl">`;
+        }
+        modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+        modalContent.innerHTML = '';
+    }
+</script>
+</body>
+</html>
