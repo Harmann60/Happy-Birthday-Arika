@@ -3,112 +3,664 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arika's World ✨</title>
+    <title>Happy Birthday Arika! 🎂</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; color: #f8fafc; }
-        .font-syne { font-family: 'Syne', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a1a;
+            color: #f0e6ff;
+            overflow-x: hidden;
+        }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-vibes { font-family: 'Great Vibes', cursive; }
+
+        /* Hero background */
+        .hero-bg {
+            background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.3) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 50%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+                        radial-gradient(ellipse at 20% 80%, rgba(168, 85, 247, 0.2) 0%, transparent 50%),
+                        #0a0a1a;
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Glowing text */
+        .glow-text {
+            text-shadow: 0 0 40px rgba(168, 85, 247, 0.5), 0 0 80px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Birthday cake animation */
+        @keyframes bounce-soft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .bounce-soft { animation: bounce-soft 2s ease-in-out infinite; }
+
+        /* Gallery card hover */
+        .gallery-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .gallery-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 60px -12px rgba(168, 85, 247, 0.4);
+        }
+        .gallery-card:hover .card-overlay {
+            opacity: 1;
+        }
+        .gallery-card:hover .card-media {
+            transform: scale(1.08);
+        }
+        .card-media {
+            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .card-overlay {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal */
+        .modal-backdrop {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Confetti */
+        .confetti-piece {
+            position: fixed;
+            top: -20px;
+            z-index: 9999;
+            pointer-events: none;
+            animation: confetti-fall linear forwards;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotateZ(0deg) rotateX(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotateZ(720deg) rotateX(360deg); opacity: 0; }
+        }
+
+        /* Candle flame */
+        @keyframes flicker {
+            0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+            25% { transform: scale(1.05) rotate(2deg); opacity: 0.9; }
+            50% { transform: scale(0.95) rotate(-1deg); opacity: 1; }
+            75% { transform: scale(1.02) rotate(1deg); opacity: 0.95; }
+        }
+        .flame { animation: flicker 0.8s ease-in-out infinite; }
+
+        /* Sparkle */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Marquee */
+        .marquee-track {
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a1a; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #a855f7, #ec4899); border-radius: 4px; }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Timeline */
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent, #a855f7, #ec4899, #a855f7, transparent);
+        }
+
+        /* Section divider */
+        .section-divider {
+            background: linear-gradient(90deg, transparent, rgba(168,85,247,0.5), rgba(236,72,153,0.5), transparent);
+            height: 1px;
+        }
     </style>
 </head>
-<body class="min-h-screen relative overflow-x-hidden">
+<body>
 
-<!-- HERO SECTION -->
-<header class="py-20 px-4 text-center max-w-4xl mx-auto relative z-10">
-    <span class="text-xs uppercase tracking-widest text-indigo-400 font-bold bg-indigo-950/80 px-4 py-1.5 rounded-full border border-indigo-800">
-      The Ultimate Vault 🎬
-    </span>
-    <h1 class="text-6xl md:text-8xl font-syne font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-pink-300 to-purple-400 mt-6 mb-4">
-        Arika
-    </h1>
-    <p class="text-slate-400 text-lg md:text-xl max-w-xl mx-auto font-normal">
-        A collection of core memories, chaotic clips, and iconic moments.
-    </p>
-</header>
+<!-- CONFETTI CONTAINER -->
+<div id="confetti-container"></div>
 
-<main class="max-w-6xl mx-auto px-4 pb-24 relative z-10">
+<!-- FLOATING PARTICLES -->
+<div id="particles" class="fixed inset-0 z-0 pointer-events-none"></div>
 
-    <!-- MEDIA GALLERY GRID -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-grid">
-
-        <!-- ITEM 1: FEATURED VIDEO -->
-        <div class="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[3/4] cursor-pointer shadow-lg hover:border-indigo-500/50 transition-all">
-            <video src="video1.mp4" class="w-full h-full object-cover" muted loop playsinline></video>
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-            <div class="absolute top-3 right-3 bg-indigo-600/90 text-white text-xs px-2.5 py-1 rounded-full font-semibold flex items-center gap-1 shadow-md">
-                ▶ Video
-            </div>
-            <button onclick="openModal('video1.mp4', 'video')" class="absolute inset-0 w-full h-full text-left p-4 flex items-end">
-                <span class="text-sm font-medium text-slate-200 group-hover:translate-x-1 transition-transform">Favorite Moment</span>
-            </button>
+<!-- NAVIGATION -->
+<nav class="fixed top-0 w-full z-40 bg-[#0a0a1a]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <span class="font-vibes text-2xl bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">Arika</span>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+            <a href="#home" class="hover:text-purple-400 transition-colors">Home</a>
+            <a href="#photos" class="hover:text-purple-400 transition-colors">Photos</a>
+            <a href="#videos" class="hover:text-purple-400 transition-colors">Videos</a>
+            <a href="#memories" class="hover:text-purple-400 transition-colors">Memories</a>
         </div>
-
-        <!-- ITEM 2: PORTRAIT PHOTO -->
-        <div class="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[3/4] cursor-pointer shadow-lg hover:border-indigo-500/50 transition-all">
-            <img src="photo1.jpg" alt="Arika" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            <button onclick="openModal('photo1.jpg', 'image')" class="absolute inset-0 w-full h-full text-left p-4 flex items-end bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity">
-                <span class="text-sm font-medium text-slate-200">Iconic Snap</span>
-            </button>
-        </div>
-
-        <!-- ITEM 3: VIDEO CLIP -->
-        <div class="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[3/4] cursor-pointer shadow-lg hover:border-indigo-500/50 transition-all">
-            <video src="video2.mp4" class="w-full h-full object-cover" muted loop playsinline></video>
-            <div class="absolute top-3 right-3 bg-indigo-600/90 text-white text-xs px-2.5 py-1 rounded-full font-semibold flex items-center gap-1 shadow-md">
-                ▶ Video
-            </div>
-            <button onclick="openModal('video2.mp4', 'video')" class="absolute inset-0 w-full h-full text-left p-4 flex items-end bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity">
-                <span class="text-sm font-medium text-slate-200">Unfiltered Energy</span>
-            </button>
-        </div>
-
-        <!-- ITEM 4: PHOTO -->
-        <div class="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[3/4] cursor-pointer shadow-lg hover:border-indigo-500/50 transition-all">
-            <img src="photo2.jpg" alt="Arika" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            <button onclick="openModal('photo2.jpg', 'image')" class="absolute inset-0 w-full h-full text-left p-4 flex items-end bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity">
-                <span class="text-sm font-medium text-slate-200">The Vibe</span>
-            </button>
-        </div>
-
+        <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
     </div>
-</main>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-[#0a0a1a]/95 backdrop-blur-xl">
+        <div class="flex flex-col items-center gap-4 py-4 text-sm font-medium text-slate-400">
+            <a href="#home" class="hover:text-purple-400 transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+            <a href="#photos" class="hover:text-purple-400 transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Photos</a>
+            <a href="#videos" class="hover:text-purple-400 transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Videos</a>
+            <a href="#memories" class="hover:text-purple-400 transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Memories</a>
+        </div>
+    </div>
+</nav>
 
-<!-- LIGHTBOX / FULLSCREEN MEDIA MODAL -->
-<div id="media-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <button onclick="closeModal()" class="absolute top-6 right-6 text-white text-3xl font-bold bg-slate-800/80 hover:bg-slate-700 h-12 w-12 rounded-full flex items-center justify-center border border-slate-600">
-        ✕
-    </button>
-    <div id="modal-content" class="max-w-4xl max-h-[85vh] w-full flex items-center justify-center">
-        <!-- Injected via JavaScript -->
+<!-- ======================== HERO SECTION ======================== -->
+<section id="home" class="hero-bg min-h-screen flex flex-col items-center justify-center relative px-4 pt-20">
+    <!-- Decorative rings -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div class="w-[500px] h-[500px] rounded-full border border-purple-500/10 animate-[spin_60s_linear_infinite]"></div>
+        <div class="absolute w-[700px] h-[700px] rounded-full border border-pink-500/10 animate-[spin_80s_linear_infinite_reverse]"></div>
+        <div class="absolute w-[900px] h-[900px] rounded-full border border-purple-400/5 animate-[spin_100s_linear_infinite]"></div>
+    </div>
+
+    <div class="text-center relative z-10">
+        <!-- Birthday badge -->
+        <div class="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-5 py-2 mb-8 backdrop-blur-sm">
+            <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+            <span class="text-sm font-medium text-purple-300">It's her special day!</span>
+            <span class="w-2 h-2 rounded-full bg-pink-400 animate-pulse"></span>
+        </div>
+
+        <!-- Main title -->
+        <h1 class="font-vibes text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] leading-none glow-text bg-gradient-to-r from-purple-300 via-pink-300 to-purple-400 text-transparent bg-clip-text mb-4">
+            Happy Birthday
+        </h1>
+        <h2 class="font-playfair text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mt-2 mb-8">
+            <span class="bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 text-transparent bg-clip-text">ARika!</span>
+        </h2>
+
+        <!-- Birthday cake -->
+        <div class="text-6xl mb-8 bounce-soft">🎂</div>
+
+        <!-- Subtitle -->
+        <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            Here's a little corner of the internet dedicated to celebrating <span class="text-purple-300 font-semibold">you</span> — your smile, your chaos, your magic moments, and every beautiful memory in between.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#photos" class="group px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all hover:scale-105 flex items-center gap-2">
+                <span>Explore Memories</span>
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="#memories" class="px-8 py-4 border border-white/10 rounded-full font-semibold text-slate-300 hover:bg-white/5 hover:border-white/20 transition-all">
+                Read a Letter ✉️
+            </a>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+</section>
+
+<!-- ======================== BIRTHDAY WISH MARQUEE ======================== -->
+<div class="relative py-6 overflow-hidden border-y border-white/5 bg-purple-950/20">
+    <div class="marquee-track flex items-center gap-8 whitespace-nowrap">
+        <span class="text-purple-400/60 text-lg font-light">✨ Happy Birthday</span>
+        <span class="text-pink-400/60 text-lg font-light">🎂 Many Happy Returns</span>
+        <span class="text-purple-400/60 text-lg font-light">💖 Wishing You the World</span>
+        <span class="text-pink-400/60 text-lg font-light">🌟 Shine Bright, Arika</span>
+        <span class="text-purple-400/60 text-lg font-light">🥳 Party Time</span>
+        <span class="text-pink-400/60 text-lg font-light">💐 You Deserve It All</span>
+        <span class="text-purple-400/60 text-lg font-light">🎀 Cheers to You</span>
+        <span class="text-pink-400/60 text-lg font-light">🦋 Forever Young</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="text-purple-400/60 text-lg font-light">✨ Happy Birthday</span>
+        <span class="text-pink-400/60 text-lg font-light">🎂 Many Happy Returns</span>
+        <span class="text-purple-400/60 text-lg font-light">💖 Wishing You the World</span>
+        <span class="text-pink-400/60 text-lg font-light">🌟 Shine Bright, Arika</span>
+        <span class="text-purple-400/60 text-lg font-light">🥳 Party Time</span>
+        <span class="text-pink-400/60 text-lg font-light">💐 You Deserve It All</span>
+        <span class="text-purple-400/60 text-lg font-light">🎀 Cheers to You</span>
+        <span class="text-pink-400/60 text-lg font-light">🦋 Forever Young</span>
     </div>
 </div>
 
+<!-- ======================== PHOTOS SECTION ======================== -->
+<section id="photos" class="py-20 px-4 relative">
+    <div class="max-w-7xl mx-auto">
+        <!-- Section header -->
+        <div class="text-center mb-16 reveal">
+            <span class="text-sm uppercase tracking-[0.3em] text-purple-400 font-semibold">📸 Gallery</span>
+            <h2 class="font-playfair text-4xl md:text-6xl font-black mt-4 mb-4">
+                <span class="bg-gradient-to-r from-purple-300 to-pink-300 text-transparent bg-clip-text">Beautiful Moments</span>
+            </h2>
+            <p class="text-slate-500 max-w-lg mx-auto">Every photo tells a story, every smile captures a memory worth keeping forever.</p>
+        </div>
+
+        <!-- Photo Masonry Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4" id="photo-grid">
+            <!-- Photos will be injected by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ======================== VIDEOS SECTION ======================== -->
+<section id="videos" class="py-20 px-4 relative">
+    <div class="max-w-7xl mx-auto">
+        <!-- Section header -->
+        <div class="text-center mb-16 reveal">
+            <span class="text-sm uppercase tracking-[0.3em] text-pink-400 font-semibold">🎬 Videos</span>
+            <h2 class="font-playfair text-4xl md:text-6xl font-black mt-4 mb-4">
+                <span class="bg-gradient-to-r from-pink-300 to-purple-300 text-transparent bg-clip-text">Chaotic Clips</span>
+            </h2>
+            <p class="text-slate-500 max-w-lg mx-auto">The videos that made us laugh, cry, and everything in between.</p>
+        </div>
+
+        <!-- Video Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" id="video-grid">
+            <!-- Videos will be injected by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ======================== MEMORIES / LETTER SECTION ======================== -->
+<section id="memories" class="py-20 px-4 relative">
+    <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <span class="text-sm uppercase tracking-[0.3em] text-purple-400 font-semibold">💌 From the Heart</span>
+            <h2 class="font-playfair text-4xl md:text-6xl font-black mt-4 mb-4">
+                <span class="bg-gradient-to-r from-purple-300 to-pink-300 text-transparent bg-clip-text">A Letter to You</span>
+            </h2>
+        </div>
+
+        <div class="reveal">
+            <div class="relative bg-gradient-to-br from-purple-950/50 to-pink-950/30 border border-purple-500/20 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+                <!-- Decorative corner -->
+                <div class="absolute top-4 right-4 text-4xl opacity-20">💌</div>
+
+                <div class="font-vibes text-3xl md:text-4xl text-purple-300 mb-6">Dear Arika,</div>
+
+                <div class="space-y-5 text-slate-300 leading-relaxed text-base md:text-lg">
+                    <p>
+                        On this beautiful day, we just want you to know how incredibly special you are. Your laughter is contagious, your energy is unmatched, and your presence lights up every room you walk into.
+                    </p>
+                    <p>
+                        This little website is our way of celebrating every goofy moment, every adventure, every late-night conversation, and every core memory we've built together. You deserve the world and so much more.
+                    </p>
+                    <p>
+                        Here's to another year of making memories that we'll look back on and laugh about. Here's to more spontaneous plans, more inside jokes, and more moments that make us think, <em class="text-purple-300">"remember when...?"</em>
+                    </p>
+                    <p>
+                        Never stop being the amazing person you are. We love you endlessly. 🎂✨
+                    </p>
+                </div>
+
+                <div class="mt-8 text-right font-vibes text-2xl text-pink-400">
+                    With love & cake 🎂
+                </div>
+
+                <!-- Decorative bottom -->
+                <div class="flex justify-center gap-3 mt-8 text-2xl opacity-60">
+                    <span>🎈</span><span>🎁</span><span>🎀</span><span>🥂</span><span>🎂</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- ======================== STATS / FUN SECTION ======================== -->
+<section class="py-20 px-4 relative">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <span class="text-sm uppercase tracking-[0.3em] text-pink-400 font-semibold">🎯 By the Numbers</span>
+            <h2 class="font-playfair text-4xl md:text-5xl font-black mt-4">
+                <span class="bg-gradient-to-r from-pink-300 to-purple-300 text-transparent bg-clip-text">The Arika Stats</span>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 reveal">
+            <div class="bg-purple-950/30 border border-purple-500/10 rounded-2xl p-6 text-center hover:border-purple-500/30 transition-all">
+                <div class="text-4xl md:text-5xl font-playfair font-black bg-gradient-to-b from-purple-300 to-purple-500 text-transparent bg-clip-text">23</div>
+                <div class="text-sm text-slate-500 mt-2">Photos Captured</div>
+                <div class="text-2xl mt-2">📸</div>
+            </div>
+            <div class="bg-pink-950/30 border border-pink-500/10 rounded-2xl p-6 text-center hover:border-pink-500/30 transition-all">
+                <div class="text-4xl md:text-5xl font-playfair font-black bg-gradient-to-b from-pink-300 to-pink-500 text-transparent bg-clip-text">43</div>
+                <div class="text-sm text-slate-500 mt-2">Videos Stored</div>
+                <div class="text-2xl mt-2">🎬</div>
+            </div>
+            <div class="bg-purple-950/30 border border-purple-500/10 rounded-2xl p-6 text-center hover:border-purple-500/30 transition-all">
+                <div class="text-4xl md:text-5xl font-playfair font-black bg-gradient-to-b from-purple-300 to-purple-500 text-transparent bg-clip-text">&infin;</div>
+                <div class="text-sm text-slate-500 mt-2">Laughs Shared</div>
+                <div class="text-2xl mt-2">😂</div>
+            </div>
+            <div class="bg-pink-950/30 border border-pink-500/10 rounded-2xl p-6 text-center hover:border-pink-500/30 transition-all">
+                <div class="text-4xl md:text-5xl font-playfair font-black bg-gradient-to-b from-pink-300 to-pink-500 text-transparent bg-clip-text">1</div>
+                <div class="text-sm text-slate-500 mt-2">Amazing You</div>
+                <div class="text-2xl mt-2">💖</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="py-12 px-4 border-t border-white/5 bg-[#070714]">
+    <div class="max-w-4xl mx-auto text-center">
+        <div class="font-vibes text-4xl md:text-5xl bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text mb-4">
+            Happy Birthday, Arika!
+        </div>
+        <p class="text-slate-500 text-sm mb-6">Made with 💖 and way too many late nights</p>
+        <div class="flex justify-center gap-4 text-2xl">
+            <span class="bounce-soft" style="animation-delay:0s">🎈</span>
+            <span class="bounce-soft" style="animation-delay:0.1s">🎁</span>
+            <span class="bounce-soft" style="animation-delay:0.2s">🎂</span>
+            <span class="bounce-soft" style="animation-delay:0.3s">🥂</span>
+            <span class="bounce-soft" style="animation-delay:0.4s">🎀</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ======================== LIGHTBOX MODAL ======================== -->
+<div id="media-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop bg-black/90">
+    <!-- Close button -->
+    <button onclick="closeModal()" class="absolute top-4 right-4 md:top-6 md:right-6 z-50 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 w-12 h-12 rounded-full flex items-center justify-center transition-all border border-white/10">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <!-- Prev/Next buttons -->
+    <button id="prev-btn" onclick="navigateMedia(-1)" class="absolute left-2 md:left-6 z-50 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 w-12 h-12 rounded-full flex items-center justify-center transition-all border border-white/10">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button id="next-btn" onclick="navigateMedia(1)" class="absolute right-2 md:right-6 z-50 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 w-12 h-12 rounded-full flex items-center justify-center transition-all border border-white/10">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <!-- Counter -->
+    <div id="media-counter" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 text-white/60 text-sm font-medium bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm"></div>
+    <!-- Media container -->
+    <div id="modal-content" class="max-w-5xl max-h-[85vh] w-full flex items-center justify-center"></div>
+</div>
+
+<!-- ======================== JAVASCRIPT ======================== -->
 <script>
-    // Hover playback for previewing grid videos
-    document.querySelectorAll('video').forEach(vid => {
-        vid.addEventListener('mouseenter', () => vid.play());
-        vid.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+(function() {
+    // ========== MEDIA DATA ==========
+    const photos = [];
+    const videos = [];
+
+    // Photo files: 1-17, 19-24 (18 is missing)
+    for (let i = 1; i <= 24; i++) {
+        if (i === 18) continue;
+        photos.push({ id: i, src: `Liability/${i}.jpeg`, type: 'image' });
+    }
+
+    // Video files: 1-5, 7-44 (6 is missing)
+    for (let i = 1; i <= 44; i++) {
+        if (i === 6) continue;
+        videos.push({ id: i, src: `Liability/${i}.mp4`, type: 'video' });
+    }
+
+    const allMedia = [...photos, ...videos];
+    let currentMediaIndex = 0;
+    let currentFilter = 'all'; // 'all', 'photos', 'videos'
+
+    // ========== RENDER PHOTO GRID ==========
+    const photoGrid = document.getElementById('photo-grid');
+    const photoCaptions = [
+        "A moment to remember", "Pure happiness", "That iconic smile",
+        "Living her best life", "Main character energy", "Golden hour glow",
+        "Adventures await", "Candid queen", "Core memory unlocked",
+        "Vibes only", "That look though", "Beautiful soul",
+        "Too cute to handle", "Natural beauty", "Simply stunning",
+        "Goals!", "Unforgettable", "Joy personified",
+        "Radiating warmth", "Priceless moment", "Forever young",
+        "Dream big", "Light of our lives"
+    ];
+
+    photos.forEach((photo, index) => {
+        const card = document.createElement('div');
+        card.className = `gallery-card reveal relative rounded-2xl overflow-hidden bg-slate-900 border border-white/5 cursor-pointer group ${index % 5 === 0 ? 'row-span-2' : ''}`;
+        card.style.animationDelay = `${index * 50}ms`;
+        card.onclick = () => openModal(allMedia.indexOf(photo));
+        card.innerHTML = `
+            <img src="${photo.src}" alt="Arika - ${photoCaptions[index]}" loading="lazy"
+                 class="card-media w-full h-full object-cover ${index % 5 === 0 ? 'min-h-[300px] md:min-h-[400px]' : 'aspect-square'}"
+                 onerror="this.parentElement.style.display='none'">
+            <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                <div>
+                    <p class="text-white text-sm font-medium">${photoCaptions[index]}</p>
+                    <p class="text-white/50 text-xs mt-1">Click to view</p>
+                </div>
+            </div>
+            <div class="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div class="bg-white/10 backdrop-blur-sm rounded-full p-2">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                </div>
+            </div>
+        `;
+        photoGrid.appendChild(card);
     });
 
-    // Lightbox modal logic
+    // ========== RENDER VIDEO GRID ==========
+    const videoGrid = document.getElementById('video-grid');
+    const videoCaptions = [
+        "Chaotic energy", "Can't stop laughing", "Core memory",
+        "Living for this", "The good old days", "Unfiltered joy",
+        "Pure magic", "Epic moments", "Forever in our hearts",
+        "That one time", "No filter needed", "Vibe check",
+        "Too good!", "Unforgettable", "Iconic behavior",
+        "Peak moments", "So much fun", "Wild times",
+        "Legend", "Living legend", "Best day ever",
+        "Making history", "Classics only", "Golden era",
+        "Masterpiece", "Chef's kiss", "Never forget",
+        "Eternal vibes", "The replay", "Legendary",
+        "Too iconic", "Timeless", "Never gets old",
+        "Chef's kiss", "Top tier content", "Amazing",
+        "The best", "Perfection", "Stunning",
+        "Brilliant", "Incredible", "Wonderful", "Fantastic"
+    ];
+
+    videos.forEach((video, index) => {
+        const card = document.createElement('div');
+        card.className = 'gallery-card reveal relative rounded-2xl overflow-hidden bg-slate-900 border border-white/5 cursor-pointer group aspect-video';
+        card.style.animationDelay = `${index * 50}ms`;
+        card.onclick = () => openModal(allMedia.indexOf(video));
+
+        const isWide = index % 7 === 0;
+        card.className += isWide ? ' sm:col-span-2' : '';
+
+        card.innerHTML = `
+            <video src="${video.src}" class="card-media w-full h-full object-cover" muted loop playsinline preload="metadata"
+                   onerror="this.parentElement.style.display='none'"></video>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute top-3 right-3">
+                <div class="bg-purple-600/80 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full font-semibold flex items-center gap-1.5 shadow-lg">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    Video
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 flex items-end justify-between">
+                <p class="text-white text-sm font-medium">${videoCaptions[index]}</p>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                </div>
+            </div>
+        `;
+        videoGrid.appendChild(card);
+    });
+
+    // ========== VIDEO HOVER PLAY ==========
+    document.querySelectorAll('#video-grid video').forEach(vid => {
+        vid.parentElement.addEventListener('mouseenter', () => vid.play());
+        vid.parentElement.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+    });
+
+    // ========== MODAL ==========
     const modal = document.getElementById('media-modal');
     const modalContent = document.getElementById('modal-content');
+    const mediaCounter = document.getElementById('media-counter');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
 
-    function openModal(src, type) {
-        if (type === 'video') {
-            modalContent.innerHTML = `<video src="${src}" controls autoplay class="max-h-[80vh] max-w-full rounded-2xl shadow-2xl"></video>`;
-        } else {
-            modalContent.innerHTML = `<img src="${src}" class="max-h-[80vh] max-w-full object-contain rounded-2xl shadow-2xl">`;
-        }
+    function getVisibleMedia() {
+        return allMedia;
+    }
+
+    window.openModal = function(index) {
+        currentMediaIndex = index;
+        renderModal();
         modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    };
+
+    function renderModal() {
+        const item = allMedia[currentMediaIndex];
+        const visible = getVisibleMedia();
+        if (item.type === 'video') {
+            modalContent.innerHTML = `<video src="${item.src}" controls autoplay class="max-h-[80vh] max-w-full rounded-2xl shadow-2xl" id="modal-video"></video>`;
+        } else {
+            modalContent.innerHTML = `<img src="${item.src}" class="max-h-[80vh] max-w-full object-contain rounded-2xl shadow-2xl">`;
+        }
+        mediaCounter.textContent = `${currentMediaIndex + 1} / ${allMedia.length}`;
     }
 
-    function closeModal() {
+    window.closeModal = function() {
+        // Pause any playing video
+        const vid = document.getElementById('modal-video');
+        if (vid) vid.pause();
         modal.classList.add('hidden');
+        modal.classList.remove('flex');
         modalContent.innerHTML = '';
+        document.body.style.overflow = '';
+    };
+
+    window.navigateMedia = function(direction) {
+        const vid = document.getElementById('modal-video');
+        if (vid) vid.pause();
+        currentMediaIndex = (currentMediaIndex + direction + allMedia.length) % allMedia.length;
+        renderModal();
+    };
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (modal.classList.contains('hidden')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') navigateMedia(-1);
+        if (e.key === 'ArrowRight') navigateMedia(1);
+    });
+
+    // Click outside to close
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // ========== SCROLL REVEAL ==========
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ========== FLOATING PARTICLES ==========
+    const particlesContainer = document.getElementById('particles');
+    const colors = ['rgba(168,85,247,0.3)', 'rgba(236,72,153,0.3)', 'rgba(139,92,246,0.3)', 'rgba(244,114,182,0.2)'];
+    for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 6 + 2;
+        p.style.cssText = `
+            width: ${size}px; height: ${size}px;
+            left: ${Math.random() * 100}%;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            animation-duration: ${Math.random() * 20 + 15}s;
+            animation-delay: ${Math.random() * 20}s;
+        `;
+        particlesContainer.appendChild(p);
     }
+
+    // ========== CONFETTI ON LOAD ==========
+    function launchConfetti() {
+        const container = document.getElementById('confetti-container');
+        const confettiColors = ['#a855f7', '#ec4899', '#6366f1', '#f472b6', '#c084fc', '#fbbf24', '#34d399', '#fb923c'];
+        const shapes = ['square', 'circle'];
+
+        for (let i = 0; i < 80; i++) {
+            const piece = document.createElement('div');
+            piece.className = 'confetti-piece';
+            const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+            const shape = shapes[Math.floor(Math.random() * shapes.length)];
+            const size = Math.random() * 10 + 5;
+            piece.style.cssText = `
+                left: ${Math.random() * 100}%;
+                width: ${size}px;
+                height: ${size}px;
+                background: ${color};
+                border-radius: ${shape === 'circle' ? '50%' : '2px'};
+                animation-duration: ${Math.random() * 3 + 2}s;
+                animation-delay: ${Math.random() * 2}s;
+            `;
+            container.appendChild(piece);
+        }
+        setTimeout(() => { container.innerHTML = ''; }, 6000);
+    }
+    launchConfetti();
+
+    // ========== MOBILE MENU ==========
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // ========== SMOOTH REVEAL ON PAGE LOAD ==========
+    document.addEventListener('DOMContentLoaded', () => {
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => { document.body.style.opacity = '1'; }, 100);
+    });
+
+})();
 </script>
 </body>
 </html>
